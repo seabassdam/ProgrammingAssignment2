@@ -1,7 +1,4 @@
-##Creating two functions to cache and create an inverse of a matrix
-
-## makeCacheMatrix function to cache the matrix so it can recalled to determine
-## if the matrix has already been inversed.
+## makeCacheMatrix function to cache a matrix
 
 makeCacheMatrix <- function(x = matrix()) {
         m <- NULL
@@ -18,9 +15,18 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## Check to see the inverse has been done already if so, display message and cached matrix.
+## if not displays inverse
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+      m <- x$getinverse()
+      if(!is.null(m)) {
+            message("getting cached data")
+            return(m)
+      }
+      data <- x$get()
+      m <- solve(data, ...)
+      x$setinverse(m)
+      m
 }
 
